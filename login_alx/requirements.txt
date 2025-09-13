@@ -1,0 +1,6 @@
+
+Django>=4.2
+gunicorn
+daphne
+asgiref
+vercel-python-wsgi

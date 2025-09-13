@@ -7,3 +7,11 @@ class Proyecto(models.Model):
 
     def __str__(self):
         return self.titulo
+
+class MenuItem(models.Model):
+    nombre = models.CharField(max_length=100)
+    url = models.CharField(max_length=200)  # podría ser path o enlace externo
+    orden = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.nombre

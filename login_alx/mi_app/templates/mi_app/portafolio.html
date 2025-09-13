@@ -10,6 +10,16 @@
 </head>
 <body>
     <button id="toggle-theme">🌙</button>
+    
+    <div class="sidebar" id="sidebar">
+    <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+        <ul>
+            {% for item in menu_items %}
+            <li><a href="{{ item.url }}">{{ item.nombre }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+
     <h1 class="page-title">Mi Portafolio</h1>
     <div class="container">
         {% for proyecto in proyectos %}
