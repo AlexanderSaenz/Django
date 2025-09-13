@@ -3,39 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Mi Portafolio</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f4f9;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 900px;
-            margin: 50px auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        .card {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            opacity: 0; /* inicial invisible para animación */
-            transform: translateY(50px);
-        }
-        .card h2 {
-            margin-top: 0;
-        }
-        .card a {
-            color: #007bff;
-            text-decoration: none;
-        }
-    </style>
+    
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'mi_app/css/styles.css' %}">
+
 </head>
 <body>
-    <h1 style="text-align:center; margin-top:20px;">Mi Portafolio</h1>
+    <button id="toggle-theme">🌙</button>
+    <h1 class="page-title">Mi Portafolio</h1>
     <div class="container">
         {% for proyecto in proyectos %}
         <div class="card">
@@ -50,15 +25,7 @@
 
     <!-- GSAP desde CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script>
-        // Animación de aparición de las tarjetas
-        gsap.to(".card", {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            stagger: 0.3, // animación escalonada
-            ease: "power3.out"
-        });
-    </script>
+
+    <script src="{% static 'mi_app/js/scripts.js' %}"></script>
 </body>
 </html>

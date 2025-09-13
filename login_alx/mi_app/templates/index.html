@@ -3,115 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Inicio</title>
-    <style>
 
-        /* Loader estilos */
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            background: #111;
-            color: #fff;
-            font-family: sans-serif;
-        }
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'mi_app/css/styles.css' %}">
 
-        #loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #111;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            z-index: 9999;
-        }
-
-        #loader svg {
-            width: 150px;
-            height: 150px;
-        }
-
-        #content {
-            opacity: 0; /* oculto al inicio */
-            padding: 20px;
-        }
-
-        circle {
-            stroke-dasharray: 283;   
-            stroke-dashoffset: 0;    
-        }
-
-        h1 {
-            text-align: center;
-            margin-top: 50px;
-            font-size: 2.5rem;
-        }
-
-        .intro {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 1.2rem;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .btn-portafolio {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 12px 24px;
-            background: #00ff99;
-            color: #111;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: transform 0.3s ease;
-        }
-
-        .btn-portafolio:hover {
-            transform: scale(1.05);
-        }
-        
-        /* Botón flotante */
-        #toggle-theme {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background: #333;
-            color: #fff;
-            border: none;
-            padding: 10px 12px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 18px;
-            transition: background 0.3s;
-            z-index: 10000;
-        }
-
-        #toggle-theme:hover {
-            background: #555;
-        }
-
-    /* Light Mode */
-        .light-mode {
-            background: #f5f5f5;
-            color: #111;
-        }
-
-        .light-mode #toggle-theme {
-            background: #ddd;
-            color: #111;
-        }
-
-
-
-
-    </style>
 </head>
-<button id="toggle-theme">🌙</button>
+
 <body>
+    <button id="toggle-theme">🌙</button>
     <!-- Loader -->
     <div id="loader">
         <svg viewBox="0 0 100 100">
@@ -131,60 +30,12 @@
     </div>
 
     <!-- Scripts -->
+
+    <!-- Librería GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            // Animación loader
-            gsap.fromTo("circle", 
-                { strokeDashoffset: 283 },  
-                { strokeDashoffset: 0, duration: 2, repeat: -1, ease: "linear" }
-            );
-
-            // Simulamos carga de 3s
-            setTimeout(() => {
-                gsap.to("#loader", { opacity: 0, duration: 1, onComplete: () => {
-                    document.getElementById("loader").style.display = "none";
-                }});
-                
-                // Aparece contenido
-                gsap.to("#content", { opacity: 1, duration: 1, delay: 0.5 });
-
-                // Animar texto de intro
-                gsap.to(".intro", {
-                    opacity: 1,
-                    y: 0,
-                    duration: 1,
-                    delay: 1
-                });
-            }, 3000);
-        });
-    </script>
-    <script>
-    const btn = document.getElementById("toggle-theme");
-
-    btn.addEventListener("click", () => {
-        document.body.classList.toggle("light-mode");
-
-        // Cambia el ícono según el modo
-        if (document.body.classList.contains("light-mode")) {
-            btn.textContent = "☀️";
-        } else {
-            btn.textContent = "🌙";
-        }
-
-        // Guardar preferencia en localStorage
-        localStorage.setItem("theme", document.body.classList.contains("light-mode") ? "light" : "dark");
-    });
-
-    // Al cargar la página, restaurar el modo guardado
-    window.addEventListener("load", () => {
-        const theme = localStorage.getItem("theme");
-        if (theme === "light") {
-            document.body.classList.add("light-mode");
-            btn.textContent = "☀️";
-        }
-    });
-</script>
+    <!-- Tu script -->
+    <script src="{% static 'mi_app/js/scripts.js' %}"></script>
+    
 
 </body>
 </html>
